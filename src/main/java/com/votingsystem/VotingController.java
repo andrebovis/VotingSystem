@@ -37,7 +37,6 @@ public class VotingController {
         model.addAttribute("candidates", candidates);
         model.addAttribute("hasVoted", voters.contains(authentication.getName()));
 
-        // Lógica da contagem regressiva
         LocalDateTime now = LocalDateTime.now();
         if (now.isBefore(votingEndDate)) {
             long days = ChronoUnit.DAYS.between(now, votingEndDate);
@@ -57,7 +56,6 @@ public class VotingController {
     public String handleVote(@RequestParam String candidateName, Authentication authentication) {
         LocalDateTime now = LocalDateTime.now();
         if (now.isAfter(votingEndDate)) {
-            // Votação encerrada, não aceita mais votos
             return "redirect:/";
         }
 

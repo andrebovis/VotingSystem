@@ -5,7 +5,16 @@
     <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
-    <h1>Bem-vindo ao Sistema de Votação!</h1>
-    <p>Esta é a sua página inicial. Ela está funcionando!</p>
+    <h1>Sistema de Votação</h1>
+
+    <form th:action="@{/vote}" method="post">
+        <div th:each="candidate : ${candidates}">
+            <input type="radio" th:name="candidateName" th:value="${candidate.name}">
+            <span th:text="${candidate.name}"></span>
+            - Votos: <span th:text="${candidate.votes}"></span>
+        </div>
+        <br>
+        <button type="submit">Votar</button>
+    </form>
 </body>
 </html>

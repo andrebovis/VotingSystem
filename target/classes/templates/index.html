@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Sistema de Votação</title>
+    <title>Who is the greatest?</title>
     <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
-    <h1>Sistema de Votação</h1>
-
-    <div th:if="${!hasVoted}">
+    <div class="container">
+        <h1>Who is the greatest?</h1>
+        <p>Participe da votação!</p>
+        
         <form th:action="@{/vote}" method="post">
-            <div th:each="candidate : ${candidates}">
-                <input type="radio" th:name="candidateName" th:value="${candidate.name}">
-                <span th:text="${candidate.name}"></span>
+            <div th:each="candidato : ${candidates}">
+                <input type="radio" th:id="${candidato.name}" name="candidateName" th:value="${candidato.name}" required>
+                <label th:for="${candidato.name}" th:text="${candidato.name}"></label>
             </div>
             <br>
             <button type="submit">Votar</button>
         </form>
-    </div>
 
-    <div th:if="${hasVoted}">
-        <p>Obrigado por votar!</p>
+        <hr>
+        <h2>Resultados Atuais</h2>
+        <ul>
+            <li th:each="candidato : ${candidates}">
+                <span th:text="${candidato.name}"></span>: <span th:text="${candidato.votes}"></span> votos
+            </li>
+        </ul>
     </div>
-
-    <div>
-        </div>
 </body>
 </html>

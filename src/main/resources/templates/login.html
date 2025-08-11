@@ -5,24 +5,26 @@
     <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
-    <h1>Login</h1>
-    <div th:if="${param.error}" class="error">
-        Usuário ou senha inválidos.
+    <div class="container">
+        <h1>Login</h1>
+        <div th:if="${param.error}" class="error">
+            Usuário ou senha inválidos.
+        </div>
+        <form th:action="@{/login}" method="post">
+            <div>
+                <label>Nome de Usuário:</label>
+                <input type="text" name="username">
+            </div>
+            <div>
+                <label>Senha:</label>
+                <input type="password" name="password">
+            </div>
+            <br>
+            <button type="submit">Entrar</button>
+        </form>
+        <p>
+            <a th:href="@{/register}">Novo usuário? Cadastre-se aqui.</a>
+        </p>
     </div>
-    <form th:action="@{/login}" method="post">
-        <div>
-            <label>Nome de Usuário:</label>
-            <input type="text" name="username">
-        </div>
-        <div>
-            <label>Senha:</label>
-            <input type="password" name="password">
-        </div>
-        <br>
-        <button type="submit">Entrar</button>
-    </form>
-    <p>
-        <a th:href="@{/register}">Novo usuário? Cadastre-se aqui.</a>
-    </p>
 </body>
 </html>
